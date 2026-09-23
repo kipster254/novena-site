@@ -650,7 +650,10 @@ def build_terms(lang: str) -> str:
     """
     import markdown
     src = (APP / "docs/terms-of-use.md").read_text("utf-8")
-    start = src.index("**Effective date:**")
+    marker = "**Effective date:**"
+    if marker not in src:
+        sys.exit(f"docs/terms-of-use.md has no '{marker}' line; cannot tell where the published terms begin.")
+    start = src.index(marker)
     body_md = src[start:]
     html_body = markdown.markdown(body_md, extensions=["extra"])
     depth = 1
