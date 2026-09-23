@@ -51,7 +51,7 @@ PACKAGE = "com.arapleting.novena"
 
 # Languages built. English only on main; each other language is added on its
 # own branch and merged only after a native reader has signed it off.
-LANGS = [l for l in os.environ.get("LANGS", "en").split(",") if l]
+LANGS = [l for l in os.environ.get("LANGS", "en,pt-BR").split(",") if l]
 
 LANG_FILES = {"en": "", "es": ".es", "pt-BR": ".pt-BR", "it": ".it", "fil": ".fil"}
 # URL prefix per language. English is the root.
