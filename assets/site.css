@@ -1,0 +1,194 @@
+/* getnovena.app — Vigil/Glass for the web.
+   Colours are the app's own tokens (src/theme/tokens.ts in kipster254/novena).
+   Every font is served from this site. No third-party request, ever. */
+
+/* Self-hosted, SIL Open Font License 1.1 (fonts/OFL-*.txt). Files from @fontsource 5.3.0. */
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-ext-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-ext-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Sora"; src: url("fonts/sora-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Sora"; src: url("fonts/sora-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Sora"; src: url("fonts/sora-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Sora"; src: url("fonts/sora-latin-ext-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  --bg: #F7F3EA;
+  --bg-deep: #EFE8D8;
+  --surface: rgba(255, 255, 255, 0.55);
+  --border: rgba(35, 31, 24, 0.12);
+  --text: #231F18;
+  --body: #332F29;
+  --muted: #776E58;
+  --accent: #8C6A1F;
+  --on-accent: #FFFBF0;
+  --accent-soft: rgba(140, 106, 31, 0.09);
+  --accent-border: rgba(140, 106, 31, 0.28);
+  --display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --reading: "Newsreader", Georgia, "Times New Roman", serif;
+  --ui: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --gutter: 16px;
+  --measure: 38rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101426;
+    --bg-deep: #0C0F1E;
+    --surface: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.10);
+    --text: #F1ECE1;
+    --body: #DCD8CD;
+    --muted: #9A9FB6;
+    --accent: #E4CE95;
+    --on-accent: #161320;
+    --accent-soft: rgba(228, 206, 149, 0.09);
+    --accent-border: rgba(228, 206, 149, 0.28);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--reading);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { color: var(--text); font-weight: 400; line-height: 1.15; }
+h1 { font-family: var(--display); font-size: clamp(2.3rem, 7vw, 3.6rem); margin: 0.4em 0 0.3em; }
+h2 { font-family: var(--display); font-size: clamp(1.7rem, 4.6vw, 2.2rem); margin: 2em 0 0.5em; }
+h3 { font-family: var(--ui); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.01em; margin: 1.6em 0 0.4em; }
+
+.wrap { max-width: 60rem; margin: 0 auto; padding: 0 var(--gutter); }
+.prose > *, .novena > * { max-width: var(--measure); }
+.novena .cards, .novena .store { max-width: none; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--on-accent); padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; top: 8px; }
+
+/* Header and footer */
+.site-header { border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; flex-wrap: wrap; }
+.wordmark { font-family: var(--display); font-size: 1.9rem; color: var(--text); text-decoration: none; line-height: 1; }
+.site-header nav { display: flex; gap: 18px; font-family: var(--ui); font-size: 0.9rem; }
+.site-header nav a { color: var(--text); text-decoration: none; padding: 10px 0; }
+.site-header nav a:hover { color: var(--accent); }
+.site-footer { margin-top: 5rem; border-top: 1px solid var(--border); padding: 2rem 0 3rem; font-family: var(--ui); font-size: 0.82rem; color: var(--muted); }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 1rem; }
+.site-footer nav a { color: var(--text); padding: 6px 0; }
+.site-footer p { margin: 0.4rem 0; max-width: 40rem; }
+
+/* Home */
+.hero { background: linear-gradient(180deg, var(--bg-deep), var(--bg)); padding: 3rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+.kicker, .day-num, .badge, .step, .days-nav, .button, .muted, .meta dt { font-family: var(--ui); }
+.kicker { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; }
+.hero h1 { font-size: clamp(2.4rem, 8.5vw, 4.2rem); max-width: 18ch; }
+.promise { font-family: var(--ui); font-size: 1rem; color: var(--text); margin: 0 0 1.5rem; }
+.hero-try { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.button { display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none; padding: 12px 20px; border-radius: 999px; font-size: 0.95rem; font-weight: 600; }
+.button:hover { filter: brightness(1.06); }
+.lead { font-size: 1.2rem; color: var(--text); }
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+.promises { list-style: none; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.promises li, .card, .store, .source, .opening { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+.promises h3 { margin-top: 0; font-size: 1rem; }
+.promises p { margin: 0; }
+
+.cards { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.card a { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; text-decoration: none; color: var(--text); }
+.card-title { font-family: var(--display); font-size: 1.35rem; line-height: 1.2; }
+.card p { margin: 0.4rem 0 0; }
+.badge { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px; }
+.badge.free { color: var(--accent); border-color: var(--accent-border); background: var(--accent-soft); }
+.disclosure { font-family: var(--ui); font-size: 0.85rem; color: var(--text); background: var(--accent-soft); border: 1px solid var(--accent-border); border-radius: 10px; padding: 8px 12px; }
+
+.shots { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 18rem)); align-items: start; }
+.shots figure { margin: 0; }
+.shots img { border-radius: 16px; border: 1px solid var(--border); }
+@media (max-width: 560px) {
+  .shots { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .shots figure { scroll-snap-align: start; }
+}
+
+.store { margin: 1.5rem 0; }
+.store h2 { margin-top: 0; }
+.coming { font-family: var(--ui); font-size: 0.92rem; margin: 0; }
+/* Google's English badge PNG carries its own clear space; the localized ones do not.
+   Both render the visible badge about 48px tall with a quarter-height clear space. */
+.play-badge { display: inline-block; }
+.play-badge img.padded { height: 72px; width: auto; }
+.play-badge img.bare { height: 48px; width: auto; margin: 12px; }
+
+/* Novena pages */
+.novena header h1 { margin-bottom: 0.4rem; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 1rem; margin: 1rem 0; }
+.meta dt { color: var(--muted); font-size: 0.8rem; padding-top: 0.25rem; }
+.meta dd { margin: 0; color: var(--text); }
+.source-line { font-size: 0.9rem; color: var(--muted); border-left: 2px solid var(--accent-border); border-top: 0; padding: 0 0 0 12px; }
+.source-line summary { font-size: 0.85rem; }
+.source-line p { margin: 0.3rem 0 0.6rem; }
+.days-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 1.5rem 0; font-size: 0.85rem; position: sticky; top: 0; background: var(--bg); padding: 8px 0; z-index: 2; border-bottom: 1px solid var(--border); }
+.days-nav span { color: var(--muted); margin-right: 4px; }
+.days-nav a { display: inline-grid; place-items: center; min-width: 40px; min-height: 40px; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--text); }
+.days-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.opening h2 { margin-top: 0; }
+.prayer { font-style: italic; color: var(--text); }
+.prayer p { margin: 0.5rem 0; }
+.day { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 2.5rem; scroll-margin-top: 64px; }
+.opening { scroll-margin-top: 64px; }
+.day h2 { margin-top: 0.2rem; }
+.day-num { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; }
+.step { font-size: 0.85rem; color: var(--muted); }
+.to-top { font-family: var(--ui); font-size: 0.8rem; }
+.source { margin: 2rem 0; font-size: 0.95rem; }
+.source h2 { margin-top: 0; font-size: 1.5rem; }
+details { border-top: 1px solid var(--border); padding: 0.6rem 0; }
+details summary { cursor: pointer; font-family: var(--ui); font-size: 0.95rem; color: var(--text); padding: 6px 0; }
+.about { margin: 2rem 0; }
+
+/* Support and press */
+.faq { margin: 1.5rem 0; }
+.faq details p { margin-top: 0.4rem; }
+.press-assets { list-style: none; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); font-family: var(--ui); font-size: 0.85rem; }
+.press-assets a { display: grid; gap: 8px; color: var(--text); }
+.press-assets img { border-radius: 12px; border: 1px solid var(--border); }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* Parish kit */
+.print-sheet { max-width: 60rem; margin: 3rem auto; padding: 0 var(--gutter); }
+.poster { text-align: center; border: 1px solid var(--border); border-radius: 18px; padding: 2.5rem 1.5rem; background: #F7F3EA; color: #231F18; }
+.poster-mark { font-family: var(--display); font-size: 3rem; margin: 0; }
+.poster-line { font-family: var(--display); font-size: clamp(2rem, 7vw, 3.6rem); line-height: 1.1; margin: 0.5rem 0 1.5rem; }
+.poster .qr { width: min(60%, 18rem); margin: 0 auto; }
+.poster-sub { font-family: var(--ui); font-size: 1rem; }
+.poster-foot { font-family: var(--ui); font-size: 0.75rem; color: #776E58; }
+.cards-sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 12px; }
+.qr-card { background: #F7F3EA; color: #231F18; border: 1px dashed #b9ad90; border-radius: 10px; padding: 12px; text-align: center; }
+.qr-card .qr { width: 7.5rem; margin: 6px auto; }
+.card-line { font-family: var(--display); font-size: 1.3rem; margin: 0; line-height: 1.15; }
+.card-sub { font-family: var(--ui); font-size: 0.72rem; margin: 0; }
+.bulletin, .note { border-left: 2px solid var(--accent-border); padding-left: 12px; }
+@media print {
+  .screen-only, .site-header, .site-footer { display: none !important; }
+  .print-sheet { break-after: page; margin: 0; max-width: none; }
+  .poster { border: 0; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+  .cards-sheet { grid-template-columns: repeat(2, 1fr); }
+  .qr-card { break-inside: avoid; }
+  .site-header nav, .days-nav, .store, .site-footer nav, .to-top, .skip { display: none; }
+  body { background: #fff; color: #000; }
+}
