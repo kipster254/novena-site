@@ -135,6 +135,11 @@ def main() -> None:
             fail(f"{rp}: forbidden element or header: {f}")
         all_text[rp] = re.sub(r"\s+", " ", " ".join(s.text))
 
+    # Terms: never publish an unresolved placeholder.
+    for rp, text in all_text.items():
+        if "[OWNER" in text or "OWNER:" in text or "OWNER —" in text:
+            fail(f"{rp}: unresolved [OWNER] placeholder; fill docs/terms-of-use.md in kipster254/novena first")
+
     # 2b. CSS
     for css in ROOT.rglob("*.css"):
         body = css.read_text("utf-8")

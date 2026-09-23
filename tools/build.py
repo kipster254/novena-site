@@ -213,6 +213,7 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
       <a href="{home}support/">{e(s['footer_support'])}</a>
       <a href="{home}press/">{e(s['footer_press'])}</a>
       <a href="{r}privacy.html">{e(s['footer_privacy'])}</a>
+      <a href="{r}terms/">Terms</a>
     </nav>
     <p>{e(s['not_affiliated'])}</p>
     {f"<p>{e(s['play_trademark'])}</p>" if PLAY_LIVE else ""}
@@ -622,6 +623,29 @@ def build_kit(lang: str) -> str:
                 description=s["kit_description"], body=body, depth=depth, noindex=True)
 
 
+def build_terms(lang: str) -> str:
+    """Terms of Use, rendered from kipster254/novena docs/terms-of-use.md.
+
+    The draft banner at the top of that file is dropped; everything from the
+    effective-date line on is rendered as written. Unresolved [OWNER] markers
+    stay visible, and tools/check.py refuses the build while any remain.
+    """
+    import markdown
+    src = (APP / "docs/terms-of-use.md").read_text("utf-8")
+    start = src.index("**Effective date:**")
+    body_md = src[start:]
+    html_body = markdown.markdown(body_md, extensions=["extra"])
+    depth = 1
+    body = f"""
+<article class="wrap prose terms">
+  <h1>Terms of Use</h1>
+  {html_body}
+</article>
+"""
+    return page(lang=lang, path="terms/", title="Terms of Use — Novena",
+                description="The terms of use for the Novena app.", body=body, depth=depth)
+
+
 def build_404() -> str:
     # Served for any unknown path at any depth, so every link is absolute
     # from the site root. On github.io the root is /novena-site/.
@@ -671,6 +695,8 @@ def main() -> None:
         write(pre + "parish/index.html", build_parish(lang, c))
         write(pre + "parish-kit/index.html", build_kit(lang))
         write(pre + "press/index.html", build_press(lang)); urls.append(pre + "press/")
+        if lang == "en":
+            write("terms/index.html", build_terms(lang)); urls.append("terms/")
     urls.append("privacy.html")
     write("404.html", build_404())
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
