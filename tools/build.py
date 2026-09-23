@@ -41,7 +41,7 @@ APP = Path(os.environ.get("NOVENA_REPO", ROOT.parent / "novena")).resolve()
 # Where the site is served. Canonical URLs, the sitemap and Open Graph tags are
 # absolute and use this. It stays on github.io until the cutover PR, which
 # changes this one line and adds CNAME in the same commit.
-BASE_URL = os.environ.get("BASE_URL", "https://kipster254.github.io/novena-site/")
+BASE_URL = os.environ.get("BASE_URL", "https://getnovena.app/")
 
 # False until Google Play production access is granted and the listing is
 # public. While False, no page links to Play: each shows a "coming soon" state.
