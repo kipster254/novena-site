@@ -30,7 +30,7 @@ STRINGS = {
         "promise_items": [
             ("Your intentions stay on your phone.", "Your intentions, your progress and your reminder times are stored only on your device. There is no account, no server of our own, no analytics and no advertising."),
             ("It works offline.", "Every novena you can read is already on your phone. Airplane mode is fine."),
-            ("Every prayer shows its source.", "Tap Sources & attribution on any novena to see where its text comes from: which prayers are traditional, and which were written for the app."),
+            ("Every prayer shows its source.", "Tap Sources & attribution on any novena to see where its text comes from."),
             ("No subscription, ever.", "Five novenas are free, with every feature. The rest of the catalog is unlocked with a one-time purchase through Google Play. Nothing renews."),
         ],
         "section_free": "Free in the app",
@@ -57,7 +57,7 @@ STRINGS = {
         "footer_support": "Support",
         "footer_press": "Press",
         "footer_novenas": "Novenas",
-        "footer_no_tracking": "This site sets no cookies and loads nothing from anyone else.",
+        "footer_no_tracking": "This site sets no cookies and loads nothing from anyone else. It is hosted on GitHub Pages, which, like any web host, logs visitors' IP addresses for security.",
         # Novena pages
         "novenas_title": "Novenas",
         "novenas_description": "All 23 English novenas in the Novena app. Five are free, and their full text is on this site.",
@@ -122,7 +122,7 @@ STRINGS = {
         "kit_title": "Parish kit",
         "kit_description": "A printable poster, QR cards and a bulletin insert for sharing Novena in a parish, and a short note for a priest or ministry lead.",
         "kit_intro": "For anyone who wants to share Novena in their parish. Print this page: it comes out as a poster, a sheet of cards and a bulletin insert. Please ask your parish office before putting anything up or in the bulletin.",
-        "kit_not_live": "Do not print yet. The QR code points to getnovena.app, which is not live yet. This notice disappears when it is.",
+        "kit_not_live": "Not ready to print yet: the QR code and the web address will appear here once getnovena.app is live.",
         "kit_bulletin_h": "Bulletin insert (about 80 words)",
         "kit_bulletin": "Praying a novena? A novena is nine days of prayer for one intention. Novena, a free-to-start app for Android, holds your place and can send one gentle reminder a day, so day four doesn't slip. It has no ads, no account and no subscription, and what you pray stays on your phone. The full St. Jude novena is at getnovena.app. (Novena is an independent app and is not affiliated with this parish.)",
         "kit_note_h": "A note to hand to a priest or ministry lead",

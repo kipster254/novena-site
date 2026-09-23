@@ -65,7 +65,9 @@ def play_url(campaign: str, content: str | None = None, lang: str = "en") -> str
     """Google Play listing URL carrying UTM parameters in `referrer`.
 
     Play reads utm_* values from the url-encoded `referrer` parameter and shows
-    them in Play Console's acquisition reporting. Nothing about the visitor is
+    them in Play Console's acquisition reporting. Never put a novena or saint in
+    here: Google would learn which devotion (St. Peregrine: cancer; St. Dymphna:
+    mental illness) a signed-in visitor was reading. Only page types go in. Nothing about the visitor is
     sent anywhere by following this link other than what any link to Play sends.
     """
     ref = f"utm_source=getnovena.app&utm_medium=website&utm_campaign={campaign}"
@@ -124,13 +126,20 @@ def composition_notice(lang: str, novena_id: str) -> str | None:
 MONTHS = {
     "en": ["January", "February", "March", "April", "May", "June", "July",
            "August", "September", "October", "November", "December"],
+    "es": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+           "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+    "pt-BR": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
+              "agosto", "setembro", "outubro", "novembro", "dezembro"],
 }
+ENDONYM = {"en": "English", "es": "Español", "pt-BR": "Português (Brasil)", "it": "Italiano", "fil": "Filipino"}
 
 
 def month_day(mmdd: str, lang: str) -> str:
     m, d = (int(x) for x in mmdd.split("-"))
     names = MONTHS.get(lang, MONTHS["en"])
-    return f"{d} {names[m - 1]}" if lang != "en" else f"{names[m - 1]} {d}"
+    if lang == "en":
+        return f"{names[m - 1]} {d}"
+    return f"{d} de {names[m - 1]}" if lang in ("es", "pt-BR") else f"{d} {names[m - 1]}"
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +171,10 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
     home = r + LANG_PREFIX[lang]
     nov = home + "novenas/"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
+    others = [l for l in LANGS if l != lang]
+    lang_links = ('<p class="langs">' + " · ".join(
+        f'<a href="{r}{LANG_PREFIX[l]}" hreflang="{HREFLANG[l]}" lang="{HREFLANG[l]}">{ENDONYM[l]}</a>'
+        for l in others) + "</p>") if others else ""
     return f"""<!doctype html>
 <html lang="{s['html_lang']}">
 <head>
@@ -215,6 +228,7 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
       <a href="{r}privacy.html">{e(s['footer_privacy'])}</a>
       <a href="{r}terms/">Terms</a>
     </nav>
+    {lang_links}
     <p>{e(s['not_affiliated'])}</p>
     {f"<p>{e(s['play_trademark'])}</p>" if PLAY_LIVE else ""}
     <p>{e(s['footer_no_tracking'])}</p>
@@ -225,7 +239,7 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
 """
 
 
-def store_block(lang: str, depth: int, campaign: str, content: str,
+def store_block(lang: str, depth: int, campaign: str, content: str | None,
                 heading: str | None = None, body: str | None = None) -> str:
     """The one place the site points at Google Play."""
     s = STRINGS[lang]
@@ -235,7 +249,7 @@ def store_block(lang: str, depth: int, campaign: str, content: str,
     if PLAY_LIVE:
         badge = (f'<a class="play-badge" href="{e(play_url(campaign, content, lang))}" '
                  f'rel="noopener">'
-                 f'<img src="{r}assets/img/google-play-badge-{lang}.png" '
+                 f'<img class="{"padded" if lang == "en" else "bare"}" src="{r}assets/img/google-play-badge-{lang}.png" '
                  f'alt="{e(s["get_it"])}" width="646" height="250"></a>')
         return f'<div class="store">{head}{lead}{badge}</div>'
     return (f'<div class="store">{head}{lead}'
@@ -434,7 +448,7 @@ def build_novena(lang: str, n: dict, c: dict) -> str:
     <div class="prayer">{paras(n['opening_prayer'])}</div>
   </section>
   {days}
-  {store_block(lang, depth, 'novena_page', sl, s['in_app_heading'], s['in_app_body'])}
+  {store_block(lang, depth, 'novena_page', None, s['in_app_heading'], s['in_app_body'])}
   {source_block(lang, n)}
   {about}
   <h2>{e(s['other_free'])}</h2>
@@ -456,7 +470,7 @@ def build_novena(lang: str, n: dict, c: dict) -> str:
   {source_block(lang, n)}
   <p class="muted">{e(s['summary_sources'])}</p>
   {about}
-  {store_block(lang, depth, 'novena_summary', sl)}
+  {store_block(lang, depth, 'novena_summary', None)}
 </article>
 """
         title = f"{n['title']} — Novena"
@@ -594,30 +608,34 @@ def build_parish(lang: str, c: dict) -> str:
 def build_kit(lang: str) -> str:
     s = STRINGS[lang]
     depth = 1 if not LANG_PREFIX[lang] else 2
-    qr = qr_svg(PARISH_URL)
     live = BASE_URL.startswith("https://getnovena.app/")
-    warn = "" if live else f'<p class="disclosure no-print-hide">{e(s["kit_not_live"])}</p>'
-    note = "".join(f"<p>{e(x)}</p>" for x in s["kit_note"])
+    # Until the cutover, getnovena.app is a registrar parking page that loads
+    # third-party script. No QR code or printed address may point there yet.
+    qr = qr_svg(PARISH_URL) if live else '<p class="qr-held">QR code appears here after the cutover.</p>'
+    warn = "" if live else f'<p class="disclosure">{e(s["kit_not_live"])}</p>'
+    here = "getnovena.app" if live else BASE_URL.split("://", 1)[1].rstrip("/")
+    note = "".join(f"<p>{e(x.replace('getnovena.app', here))}</p>" for x in s["kit_note"])
     cards = "".join(f'<div class="qr-card"><p class="card-line">{e(s["kit_card_line"])}</p>{qr}'
                     f'<p class="card-sub">{e(s["kit_card_sub"])}<br>getnovena.app</p></div>' for _ in range(8))
+    sheets = f"""<div class="print-sheet poster">
+  <p class="poster-mark">Novena</p>
+  <p class="poster-line">{s['kit_poster_line']}</p>
+  {qr}
+  <p class="poster-sub">{e(s['kit_poster_sub'])}<br><strong>getnovena.app</strong></p>
+  <p class="poster-foot">{e(s['kit_footer'])}</p>
+</div>
+<div class="print-sheet cards-sheet">{cards}</div>""" if live else ""
     body = f"""
 <section class="wrap prose screen-only">
   <h1>{e(s['kit_title'])}</h1>
   <p class="lead">{e(s['kit_intro'])}</p>
   {warn}
   <h2>{e(s['kit_bulletin_h'])}</h2>
-  <p class="bulletin">{e(s['kit_bulletin'])}</p>
+  <p class="bulletin">{e(s['kit_bulletin'] if live else s['kit_bulletin'].replace('getnovena.app', BASE_URL.split('://', 1)[1].rstrip('/')))}</p>
   <h2>{e(s['kit_note_h'])}</h2>
   <div class="note">{note}</div>
 </section>
-<section class="print-sheet poster">
-  <p class="poster-mark">Novena</p>
-  <p class="poster-line">{s['kit_poster_line']}</p>
-  {qr}
-  <p class="poster-sub">{e(s['kit_poster_sub'])}<br><strong>getnovena.app</strong></p>
-  <p class="poster-foot">{e(s['kit_footer'])}</p>
-</section>
-<section class="print-sheet cards-sheet">{cards}</section>
+{sheets}
 """
     return page(lang=lang, path=LANG_PREFIX[lang] + "parish-kit/", title=f"{s['kit_title']} — Novena",
                 description=s["kit_description"], body=body, depth=depth, noindex=True)

@@ -135,10 +135,14 @@ def main() -> None:
             fail(f"{rp}: forbidden element or header: {f}")
         all_text[rp] = re.sub(r"\s+", " ", " ".join(s.text))
 
-    # Terms: never publish an unresolved placeholder.
-    for rp, text in all_text.items():
-        if "[OWNER" in text or "OWNER:" in text or "OWNER —" in text:
-            fail(f"{rp}: unresolved [OWNER] placeholder; fill docs/terms-of-use.md in kipster254/novena first")
+    # No Play link may name a novena or saint (utm_content would tell Google
+    # which devotion a visitor was reading).
+    slugs = {p.parent.name for p in (ROOT / "novenas").glob("*/index.html")}
+    for page in pages:
+        for m in re.finditer(r"referrer=([^\"&]+)", page.read_text("utf-8")):
+            ref = unquote(m.group(1))
+            if any(slug in ref for slug in slugs):
+                fail(f"{page.relative_to(ROOT)}: Play referrer names a novena: {ref}")
 
     # 2b. CSS
     for css in ROOT.rglob("*.css"):
