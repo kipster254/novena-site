@@ -609,14 +609,14 @@ def build_kit(lang: str) -> str:
   <h2>{e(s['kit_note_h'])}</h2>
   <div class="note">{note}</div>
 </section>
-<section class="print-sheet poster">
+<div class="print-sheet poster">
   <p class="poster-mark">Novena</p>
   <p class="poster-line">{s['kit_poster_line']}</p>
   {qr}
   <p class="poster-sub">{e(s['kit_poster_sub'])}<br><strong>getnovena.app</strong></p>
   <p class="poster-foot">{e(s['kit_footer'])}</p>
-</section>
-<section class="print-sheet cards-sheet">{cards}</section>
+</div>
+<div class="print-sheet cards-sheet">{cards}</div>
 """
     return page(lang=lang, path=LANG_PREFIX[lang] + "parish-kit/", title=f"{s['kit_title']} — Novena",
                 description=s["kit_description"], body=body, depth=depth, noindex=True)
