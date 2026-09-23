@@ -424,7 +424,7 @@ def build_novena(lang: str, n: dict, c: dict) -> str:
 <article class="day" id="day-{num}">
   <p class="day-num">{e(s['day_of'].format(n=num))}</p>
   <h2>{e(d['title'])}</h2>
-  <p class="step"><a href="#opening">{e(s['opening_prayer'])}</a> — {e(s['opening_prayer_note'])}</p>
+  <details class="day-opening"><summary>{e(s['opening_prayer'])}</summary><div class="prayer">{paras(n['opening_prayer'])}</div></details>
   <div class="reading">{paras(d['body_text'])}</div>
   <h3>{e(s['closing_prayer'])}</h3>
   <div class="prayer">{paras(d['closing_prayer'])}</div>

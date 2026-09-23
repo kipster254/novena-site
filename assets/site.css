@@ -154,6 +154,8 @@ h3 { font-family: var(--ui); font-size: 0.95rem; font-weight: 600; letter-spacin
 .day h2 { margin-top: 0.2rem; }
 .day-num { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; }
 .step { font-size: 0.85rem; color: var(--muted); }
+.day-opening { border: 1px solid var(--border); border-radius: 12px; padding: 4px 14px; margin: 0.6rem 0 1rem; background: var(--surface); }
+.day-opening summary { font-size: 0.9rem; }
 .to-top { font-family: var(--ui); font-size: 0.8rem; }
 .source { margin: 2rem 0; font-size: 0.95rem; }
 .source h2 { margin-top: 0; font-size: 1.5rem; }
