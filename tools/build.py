@@ -246,7 +246,7 @@ def store_block(lang: str, depth: int, campaign: str, content: str,
     if PLAY_LIVE:
         badge = (f'<a class="play-badge" href="{e(play_url(campaign, content, lang))}" '
                  f'rel="noopener">'
-                 f'<img src="{r}assets/img/google-play-badge-{lang}.png" '
+                 f'<img class="{"padded" if lang == "en" else "bare"}" src="{r}assets/img/google-play-badge-{lang}.png" '
                  f'alt="{e(s["get_it"])}" width="646" height="250"></a>')
         return f'<div class="store">{head}{lead}{badge}</div>'
     return (f'<div class="store">{head}{lead}'
