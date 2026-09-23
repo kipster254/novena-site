@@ -128,7 +128,11 @@ h3 { font-family: var(--ui); font-size: 0.95rem; font-weight: 600; letter-spacin
 .store { margin: 1.5rem 0; }
 .store h2 { margin-top: 0; }
 .coming { font-family: var(--ui); font-size: 0.92rem; margin: 0; }
-.play-badge img { width: 200px; height: auto; }
+/* Google's English badge PNG carries its own clear space; the localized ones do not.
+   Both render the visible badge about 48px tall with a quarter-height clear space. */
+.play-badge { display: inline-block; }
+.play-badge img.padded { height: 72px; width: auto; }
+.play-badge img.bare { height: 48px; width: auto; margin: 12px; }
 
 /* Novena pages */
 .novena header h1 { margin-bottom: 0.4rem; }
