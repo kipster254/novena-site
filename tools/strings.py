@@ -30,7 +30,7 @@ STRINGS = {
         "promise_items": [
             ("Your intentions stay on your phone.", "Your intentions, your progress and your reminder times are stored only on your device. There is no account, no server of our own, no analytics and no advertising."),
             ("It works offline.", "Every novena you can read is already on your phone. Airplane mode is fine."),
-            ("Every prayer shows its source.", "Tap Sources & attribution on any novena to see where its text comes from: which prayers are traditional, and which were written for the app."),
+            ("Every prayer shows its source.", "Tap Sources & attribution on any novena to see where its text comes from."),
             ("No subscription, ever.", "Five novenas are free, with every feature. The rest of the catalog is unlocked with a one-time purchase through Google Play. Nothing renews."),
         ],
         "section_free": "Free in the app",
