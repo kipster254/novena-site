@@ -16,7 +16,7 @@ Switches (environment variables, or edit the defaults in `build.py`):
 
 | Variable | Default | When it changes |
 |---|---|---|
-| `BASE_URL` | `https://kipster254.github.io/novena-site/` | The cutover PR sets `https://getnovena.app/` (and adds `CNAME`) |
+| `BASE_URL` | `https://getnovena.app/` | Set by the cutover PR, together with `CNAME`. Before it, the site was built for `https://kipster254.github.io/novena-site/` |
 | `PLAY_LIVE` | `0` | `1` once the app is public on Google Play: shows the badge and UTM link instead of "coming soon" |
 | `LANGS` | `en` | A language is added only on its own branch, merged after a native reader signs it off |
 
