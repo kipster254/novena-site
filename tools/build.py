@@ -124,13 +124,20 @@ def composition_notice(lang: str, novena_id: str) -> str | None:
 MONTHS = {
     "en": ["January", "February", "March", "April", "May", "June", "July",
            "August", "September", "October", "November", "December"],
+    "es": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+           "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+    "pt-BR": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
+              "agosto", "setembro", "outubro", "novembro", "dezembro"],
 }
+ENDONYM = {"en": "English", "es": "Español", "pt-BR": "Português (Brasil)", "it": "Italiano", "fil": "Filipino"}
 
 
 def month_day(mmdd: str, lang: str) -> str:
     m, d = (int(x) for x in mmdd.split("-"))
     names = MONTHS.get(lang, MONTHS["en"])
-    return f"{d} {names[m - 1]}" if lang != "en" else f"{names[m - 1]} {d}"
+    if lang == "en":
+        return f"{names[m - 1]} {d}"
+    return f"{d} de {names[m - 1]}" if lang in ("es", "pt-BR") else f"{d} {names[m - 1]}"
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +169,10 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
     home = r + LANG_PREFIX[lang]
     nov = home + "novenas/"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
+    others = [l for l in LANGS if l != lang]
+    lang_links = ('<p class="langs">' + " · ".join(
+        f'<a href="{r}{LANG_PREFIX[l]}" hreflang="{HREFLANG[l]}" lang="{HREFLANG[l]}">{ENDONYM[l]}</a>'
+        for l in others) + "</p>") if others else ""
     return f"""<!doctype html>
 <html lang="{s['html_lang']}">
 <head>
@@ -214,6 +225,7 @@ def page(*, lang: str, path: str, title: str, description: str, body: str,
       <a href="{home}press/">{e(s['footer_press'])}</a>
       <a href="{r}privacy.html">{e(s['footer_privacy'])}</a>
     </nav>
+    {lang_links}
     <p>{e(s['not_affiliated'])}</p>
     {f"<p>{e(s['play_trademark'])}</p>" if PLAY_LIVE else ""}
     <p>{e(s['footer_no_tracking'])}</p>
