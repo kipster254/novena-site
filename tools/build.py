@@ -41,7 +41,7 @@ APP = Path(os.environ.get("NOVENA_REPO", ROOT.parent / "novena")).resolve()
 # Where the site is served. Canonical URLs, the sitemap and Open Graph tags are
 # absolute and use this. It stays on github.io until the cutover PR, which
 # changes this one line and adds CNAME in the same commit.
-BASE_URL = os.environ.get("BASE_URL", "https://kipster254.github.io/novena-site/")
+BASE_URL = os.environ.get("BASE_URL", "https://getnovena.app/")
 
 # False until Google Play production access is granted and the listing is
 # public. While False, no page links to Play: each shows a "coming soon" state.
@@ -425,7 +425,7 @@ def build_novena(lang: str, n: dict, c: dict) -> str:
 <article class="day" id="day-{num}">
   <p class="day-num">{e(s['day_of'].format(n=num))}</p>
   <h2>{e(d['title'])}</h2>
-  <p class="step"><a href="#opening">{e(s['opening_prayer'])}</a> — {e(s['opening_prayer_note'])}</p>
+  <details class="day-opening"><summary>{e(s['opening_prayer'])}</summary><div class="prayer">{paras(n['opening_prayer'])}</div></details>
   <div class="reading">{paras(d['body_text'])}</div>
   <h3>{e(s['closing_prayer'])}</h3>
   <div class="prayer">{paras(d['closing_prayer'])}</div>

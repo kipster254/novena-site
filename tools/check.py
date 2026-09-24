@@ -93,7 +93,7 @@ def resolve(page: Path, href: str) -> Path | None:
         return None
     if path.startswith("/"):
         # Root-absolute paths are only used by 404.html; strip the site root.
-        base = urlparse(os.environ.get("BASE_URL", "https://kipster254.github.io/novena-site/")).path
+        base = urlparse(os.environ.get("BASE_URL", "https://getnovena.app/")).path
         path = path[len(base):] if path.startswith(base) else path.lstrip("/")
         target = ROOT / path
     else:
@@ -193,7 +193,7 @@ def main() -> None:
                                 fail(f"{lang}/{n['id']}: PAID TEXT on {owners[:2]}: {chunk[:60]}…")
 
     # sitemap URLs exist
-    base = os.environ.get("BASE_URL", "https://kipster254.github.io/novena-site/")
+    base = os.environ.get("BASE_URL", "https://getnovena.app/")
     for loc in re.findall(r"<loc>([^<]+)</loc>", (ROOT / "sitemap.xml").read_text("utf-8")):
         if not loc.startswith(base):
             fail(f"sitemap: {loc} is not under {base}")
