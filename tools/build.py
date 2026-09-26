@@ -51,7 +51,7 @@ PACKAGE = "com.arapleting.novena"
 
 # Languages built. English only on main; each other language is added on its
 # own branch and merged only after a native reader has signed it off.
-LANGS = [l for l in os.environ.get("LANGS", "en").split(",") if l]
+LANGS = [l for l in os.environ.get("LANGS", "en,pt-BR").split(",") if l]
 
 LANG_FILES = {"en": "", "es": ".es", "pt-BR": ".pt-BR", "it": ".it", "fil": ".fil"}
 # URL prefix per language. English is the root.
@@ -115,7 +115,19 @@ def paras(text: str) -> str:
 COMPOSITION_KEY = {"novena-divine-mercy": "mercy", "novena-surrender": "surrender"}
 
 
+# Finding C2: the non-English St. Jude novenas are original compositions, not
+# translations of the traditional "O Holy St. Jude". Say so beside the title.
+ORIGINAL_ST_JUDE = {
+    "es": "Composición original escrita para la app Novena; no es una versión de la oración tradicional a San Judas.",
+    "pt-BR": "Composição original escrita para o app Novena; não é uma versão da oração tradicional a São Judas.",
+    "it": "Composizione originale scritta per l'app Novena; non è una versione della preghiera tradizionale a San Giuda.",
+    "fil": "Orihinal na komposisyon para sa app na Novena; hindi ito bersyon ng tradisyonal na panalangin kay San Judas.",
+}
+
+
 def composition_notice(lang: str, novena_id: str) -> str | None:
+    if novena_id == "novena-st-jude" and lang in ORIGINAL_ST_JUDE:
+        return ORIGINAL_ST_JUDE[lang]
     key = COMPOSITION_KEY.get(novena_id)
     if not key:
         return None
