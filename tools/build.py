@@ -49,9 +49,10 @@ PLAY_LIVE = os.environ.get("PLAY_LIVE", "1") == "1"
 
 PACKAGE = "com.arapleting.novena"
 
-# Languages built. English only on main; each other language is added on its
-# own branch and merged only after a native reader has signed it off.
-LANGS = [l for l in os.environ.get("LANGS", "en,es").split(",") if l]
+# Languages built. Each non-English language is normally added on its own branch
+# and merged after a native reader signs it off. es and pt-BR were merged on
+# 2026-09-28 under an owner waiver of that gate (novena decision-log, 2026-09-28).
+LANGS = [l for l in os.environ.get("LANGS", "en,es,pt-BR").split(",") if l]
 
 LANG_FILES = {"en": "", "es": ".es", "pt-BR": ".pt-BR", "it": ".it", "fil": ".fil"}
 # URL prefix per language. English is the root.
