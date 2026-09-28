@@ -170,6 +170,7 @@ STRINGS = {
         "press_paragraph_h": "In a paragraph",
         "press_paragraph": "Novena is a Catholic prayer app for Android built around one practice: the novena, nine days of prayer for one intention. It carries 23 novenas in each of five languages (English, Spanish, Brazilian Portuguese, Italian and Filipino), each language with its own catalog. Five novenas in each language are free with every feature, and the rest are a one-time unlock, never a subscription. It works offline, needs no account, shows no ads, and keeps everything a person prays on their own phone: there is no server of its own and no analytics. Every prayer shows its source.",
         "press_facts_h": "Facts",
+        "press_platform_live": "Android, on Google Play. There is no iPhone version.",
         "press_facts": [
             ("Platform", "Android. Coming soon to Google Play; not yet publicly available. There is no iPhone version."),
             ("Package", "com.arapleting.novena"),

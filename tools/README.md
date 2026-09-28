@@ -17,7 +17,7 @@ Switches (environment variables, or edit the defaults in `build.py`):
 | Variable | Default | When it changes |
 |---|---|---|
 | `BASE_URL` | `https://getnovena.app/` | Set by the cutover PR, together with `CNAME`. Before it, the site was built for `https://kipster254.github.io/novena-site/` |
-| `PLAY_LIVE` | `0` | `1` once the app is public on Google Play: shows the badge and UTM link instead of "coming soon" |
+| `PLAY_LIVE` | `1` | The Play listing is public (since 2026-09-28): shows the badge and UTM link. `0` restores "coming soon" |
 | `LANGS` | `en` | A language is added only on its own branch, merged after a native reader signs it off |
 
 `check.py` fails if `privacy.html` differs from the app repo's copy, if any page
