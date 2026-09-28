@@ -626,7 +626,9 @@ def build_kit(lang: str) -> str:
     live = BASE_URL.startswith("https://getnovena.app/")
     # Until the cutover, getnovena.app is a registrar parking page that loads
     # third-party script. No QR code or printed address may point there yet.
-    qr = qr_svg(PARISH_URL) if live else '<p class="qr-held">QR code appears here after the cutover.</p>'
+    # Each kit's QR opens its own language's parish page: a printed Spanish kit
+    # must not land a parishioner on the English /parish/.
+    qr = qr_svg(f"{BASE_URL}{LANG_PREFIX[lang]}parish/") if live else '<p class="qr-held">QR code appears here after the cutover.</p>'
     warn = "" if live else f'<p class="disclosure">{e(s["kit_not_live"])}</p>'
     here = "getnovena.app" if live else BASE_URL.split("://", 1)[1].rstrip("/")
     note = "".join(f"<p>{e(x.replace('getnovena.app', here))}</p>" for x in s["kit_note"])
