@@ -43,9 +43,9 @@ APP = Path(os.environ.get("NOVENA_REPO", ROOT.parent / "novena")).resolve()
 # changes this one line and adds CNAME in the same commit.
 BASE_URL = os.environ.get("BASE_URL", "https://getnovena.app/")
 
-# False until Google Play production access is granted and the listing is
-# public. While False, no page links to Play: each shows a "coming soon" state.
-PLAY_LIVE = os.environ.get("PLAY_LIVE", "0") == "1"
+# True since 2026-09-28, when the Play listing became public. Set PLAY_LIVE=0
+# to go back to the "coming soon" state (no page links to Play).
+PLAY_LIVE = os.environ.get("PLAY_LIVE", "1") == "1"
 
 PACKAGE = "com.arapleting.novena"
 
@@ -520,7 +520,10 @@ def build_press(lang: str) -> str:
     s = STRINGS[lang]
     depth = 1 if not LANG_PREFIX[lang] else 2
     r = rel(depth)
-    facts = "".join(f"<dt>{e(k)}</dt><dd>{v}</dd>" for k, v in s["press_facts"])
+    rows = s["press_facts"]
+    if PLAY_LIVE and "press_platform_live" in s:
+        rows = [(k, s["press_platform_live"] if i == 0 else v) for i, (k, v) in enumerate(rows)]
+    facts = "".join(f"<dt>{e(k)}</dt><dd>{v}</dd>" for k, v in rows)
     shots = "".join(
         f'<li><a href="{r}assets/press/screenshot-{i}.png" download>'
         f'<img src="{r}assets/img/screen-{i}.png" alt="{e(s["shot_alts"][i - 1])}" width="540" height="960" loading="lazy">'
