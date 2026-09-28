@@ -18,7 +18,7 @@ Switches (environment variables, or edit the defaults in `build.py`):
 |---|---|---|
 | `BASE_URL` | `https://getnovena.app/` | Set by the cutover PR, together with `CNAME`. Before it, the site was built for `https://kipster254.github.io/novena-site/` |
 | `PLAY_LIVE` | `1` | The Play listing is public (since 2026-09-28): shows the badge and UTM link. `0` restores "coming soon" |
-| `LANGS` | `en` | A language is added only on its own branch, merged after a native reader signs it off |
+| `LANGS` | `en,es,pt-BR` | A language is normally added on its own branch and merged after a native reader signs it off. **es and pt-BR went live 2026-09-28 under an owner waiver of that gate** (novena `docs/execution/decision-log.md`); their native read is still owed |
 
 `check.py` fails if `privacy.html` differs from the app repo's copy, if any page
 loads anything from another host, if any paid novena's text appears anywhere,
