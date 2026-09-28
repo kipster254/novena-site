@@ -49,9 +49,10 @@ PLAY_LIVE = os.environ.get("PLAY_LIVE", "1") == "1"
 
 PACKAGE = "com.arapleting.novena"
 
-# Languages built. English only on main; each other language is added on its
-# own branch and merged only after a native reader has signed it off.
-LANGS = [l for l in os.environ.get("LANGS", "en").split(",") if l]
+# Languages built. Each non-English language is normally added on its own branch
+# and merged after a native reader signs it off. es and pt-BR were merged on
+# 2026-09-28 under an owner waiver of that gate (novena decision-log, 2026-09-28).
+LANGS = [l for l in os.environ.get("LANGS", "en,es,pt-BR").split(",") if l]
 
 LANG_FILES = {"en": "", "es": ".es", "pt-BR": ".pt-BR", "it": ".it", "fil": ".fil"}
 # URL prefix per language. English is the root.
@@ -115,7 +116,19 @@ def paras(text: str) -> str:
 COMPOSITION_KEY = {"novena-divine-mercy": "mercy", "novena-surrender": "surrender"}
 
 
+# Finding C2: the non-English St. Jude novenas are original compositions, not
+# translations of the traditional "O Holy St. Jude". Say so beside the title.
+ORIGINAL_ST_JUDE = {
+    "es": "Composición original escrita para la app Novena; no es una versión de la oración tradicional a San Judas.",
+    "pt-BR": "Composição original escrita para o app Novena; não é uma versão da oração tradicional a São Judas.",
+    "it": "Composizione originale scritta per l'app Novena; non è una versione della preghiera tradizionale a San Giuda.",
+    "fil": "Orihinal na komposisyon para sa app na Novena; hindi ito bersyon ng tradisyonal na panalangin kay San Judas.",
+}
+
+
 def composition_notice(lang: str, novena_id: str) -> str | None:
+    if novena_id == "novena-st-jude" and lang in ORIGINAL_ST_JUDE:
+        return ORIGINAL_ST_JUDE[lang]
     key = COMPOSITION_KEY.get(novena_id)
     if not key:
         return None
@@ -613,7 +626,9 @@ def build_kit(lang: str) -> str:
     live = BASE_URL.startswith("https://getnovena.app/")
     # Until the cutover, getnovena.app is a registrar parking page that loads
     # third-party script. No QR code or printed address may point there yet.
-    qr = qr_svg(PARISH_URL) if live else '<p class="qr-held">QR code appears here after the cutover.</p>'
+    # Each kit's QR opens its own language's parish page: a printed Spanish kit
+    # must not land a parishioner on the English /parish/.
+    qr = qr_svg(f"{BASE_URL}{LANG_PREFIX[lang]}parish/") if live else '<p class="qr-held">QR code appears here after the cutover.</p>'
     warn = "" if live else f'<p class="disclosure">{e(s["kit_not_live"])}</p>'
     here = "getnovena.app" if live else BASE_URL.split("://", 1)[1].rstrip("/")
     note = "".join(f"<p>{e(x.replace('getnovena.app', here))}</p>" for x in s["kit_note"])
